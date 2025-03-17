@@ -1,0 +1,7 @@
+[package]
+name = "serverness-httpmock"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]

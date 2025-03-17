@@ -1,0 +1,18 @@
+[package]
+name = "serverness"
+authors.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+chrono.workspace = true
+decimal.workspace = true
+futures.workspace = true
+progenitor-client.workspace = true
+regress.workspace = true
+reqwest.workspace = true
+schemars.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror = "2.0.11"
+uuid.workspace = true
