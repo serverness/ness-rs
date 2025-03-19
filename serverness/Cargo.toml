@@ -16,3 +16,9 @@ serde.workspace = true
 serde_json.workspace = true
 thiserror = "2.0.11"
 uuid.workspace = true
+nu-protocol = { workspace = true, optional = true }
+
+[features]
+default = []
+nu = ["dep:nu-protocol"]
+extras = []

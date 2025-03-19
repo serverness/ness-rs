@@ -10,22 +10,22 @@ chrono = { workspace = true, features = ["serde"] }
 ctrlc = "3.4.5"
 futures.workspace = true
 indoc = "2.0.5"
-serverness.workspace = true
-nu-cli = { version = "0.102.0", features = ["plugin"] }
-nu-cmd-base = "0.102.0"
-nu-cmd-extra = "0.102.0"
-nu-cmd-lang = "0.102.0"
-nu-cmd-plugin = "0.102.0"
-nu-command = { version = "0.102.0", features = ["plugin"] }
-nu-engine = "0.102.0"
-nu-explore = "0.102.0"
-nu-parser = "0.102.0"
-nu-path = "0.102.0"
-nu-plugin = "0.102.0"
-nu-plugin-engine = "0.102.0"
-nu-protocol = "0.102.0"
-nu-system = "0.102.0"
-nu-utils = "0.102.0"
+serverness = { workspace = true, features = ["nu"] }
+nu-cli = { workspace = true, features = ["plugin"] }
+nu-cmd-base = { workspace = true }
+nu-cmd-extra = { workspace = true }
+nu-cmd-lang = { workspace = true }
+nu-cmd-plugin = { workspace = true }
+nu-command = { workspace = true, features = ["plugin"] }
+nu-engine = { workspace = true }
+nu-explore = { workspace = true }
+nu-parser = { workspace = true }
+nu-path = { workspace = true }
+nu-plugin = { workspace = true }
+nu-plugin-engine = { workspace = true }
+nu-protocol = { workspace = true }
+nu-system = { workspace = true }
+nu-utils = { workspace = true }
 schemars = { workspace = true, features = ["chrono", "uuid"] }
 serde.workspace = true
 serde_json.workspace = true

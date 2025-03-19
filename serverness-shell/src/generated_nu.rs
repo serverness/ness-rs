@@ -162,6 +162,7 @@ pub async fn execute_install_destroy<'c>(
         Ok(r) => return Ok(Value::nothing(span)),
     }
 }
+
 pub async fn execute_instance_list<'c>(
     engine_state: &nu_protocol::engine::EngineState,
     stack: &mut nu_protocol::engine::Stack,
@@ -180,9 +181,9 @@ pub async fn execute_instance_list<'c>(
     let mut stream = futures::StreamExt::take(
         request.stream(),
         call.get_flag::<std::num::NonZeroU32>(engine_state, stack, "limit")
-            .map_or(usize::MAX, |x| x.get() as usize)?,
+            .map_or(usize::MAX, |x| x.unwrap().get() as usize),
     );
-    let results = vec![];
+    let mut results = vec![];
     loop {
         match futures::TryStreamExt::try_next(&mut stream).await {
             Err(r) => return Err(anyhow::Error::new(r)),
@@ -199,11 +200,13 @@ pub async fn execute_instance_create<'c>(
     engine_state: &nu_protocol::engine::EngineState,
     stack: &mut nu_protocol::engine::Stack,
     call: &'c nu_protocol::engine::Call<'c>,
-    state: Arc<Mutex<State>>,
+    client: &serverness::Client,
 ) -> anyhow::Result<Value> {
     let span = call.head;
-    let guard = state.lock().unwrap();
-    let mut request = guard.client.instance_create();
+
+    dbg!(span);
+
+    let mut request = client.instance_create();
     if let Some(value) = call.get_flag::<::std::string::String>(engine_state, stack, "hostname")? {
         request = request.body_map(|body| body.hostname(value.clone()))
     }
@@ -215,10 +218,15 @@ pub async fn execute_instance_create<'c>(
         let body_value = serde_json::from_str::<types::InstanceCreateParams>(&body_txt).unwrap();
         request = request.body(body_value);
     }
+
+    dbg!(&request);
+
     let result = request.send().await;
     match result {
         Err(r) => Err(anyhow::Error::new(r)),
         Ok(r) => {
+            dbg!(&r);
+
             return Ok(to_value(r.into_inner(), span).unwrap());
         }
     }

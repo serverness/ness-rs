@@ -1,6 +1,7 @@
 mod cmd;
 mod config;
 mod context;
+mod generated_nu;
 mod state;
 
 use std::{

@@ -47,48 +47,17 @@ impl Command for InstanceCreate {
 
         let results = guard
             .runtime
-            .block_on(execute_instance_list(
+            .block_on(crate::generated_nu::execute_instance_create(
                 engine_state,
                 stack,
                 call,
-                self.state.clone(),
+                &guard.client,
             ))
             .unwrap();
 
         /* let hostname = call.get_flag::<String>(engine_state, stack, "hostname")?;
         let pool = call.get_flag::<::std::string::String>(engine_state, stack, "pool")?; */
 
-        Ok(Value::list(results, call.head).into_pipeline_data())
-    }
-}
-
-async fn execute_instance_list<'a>(
-    engine_state: &nu_protocol::engine::EngineState,
-    stack: &mut nu_protocol::engine::Stack,
-    call: &'a nu_protocol::engine::Call<'a>,
-    state: Arc<Mutex<State>>,
-) -> anyhow::Result<Vec<Value>> {
-    let span = call.head;
-    let guard = state.lock().unwrap();
-    let mut request = guard.client.instance_list();
-
-    let mut stream = futures::StreamExt::take(request.stream(), usize::MAX);
-    let mut results = vec![];
-    loop {
-        match futures::TryStreamExt::try_next(&mut stream).await {
-            Err(r) => {
-                return Err(anyhow::Error::new(r));
-            }
-
-            Ok(None) => {
-                return Ok(results);
-            }
-
-            Ok(Some(value)) => {
-                let val = crate::cmd::to_value(value, span).unwrap();
-
-                results.push(val);
-            }
-        }
+        Ok(results.into_pipeline_data())
     }
 }

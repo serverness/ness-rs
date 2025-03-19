@@ -43,3 +43,18 @@ schemars = { version = "0.8.21", features = [
 ] }
 uuid = { version = "1.13.2", features = ["v7", "serde"] }
 serverness = { path = "serverness" }
+nu-protocol = { path = "../nushell/crates/nu-protocol" }
+nu-cli = { path = "../nushell/crates/nu-cli" }
+nu-cmd-base = { path = "../nushell/crates/nu-cmd-base" }
+nu-cmd-extra = { path = "../nushell/crates/nu-cmd-extra" }
+nu-cmd-lang = { path = "../nushell/crates/nu-cmd-lang" }
+nu-cmd-plugin = { path = "../nushell/crates/nu-cmd-plugin" }
+nu-command = { path = "../nushell/crates/nu-command" }
+nu-engine = { path = "../nushell/crates/nu-engine" }
+nu-explore = { path = "../nushell/crates/nu-explore" }
+nu-parser = { path = "../nushell/crates/nu-parser" }
+nu-path = { path = "../nushell/crates/nu-path" }
+nu-plugin = { path = "../nushell/crates/nu-plugin" }
+nu-plugin-engine = { path = "../nushell/crates/nu-plugin-engine" }
+nu-system = { path = "../nushell/crates/nu-system" }
+nu-utils = { path = "../nushell/crates/nu-utils" }
