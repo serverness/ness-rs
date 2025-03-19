@@ -6,29 +6,29 @@ use nu_engine::get_full_help;
 use crate::state::State;
 
 #[derive(Clone)]
-pub struct InstanceList {
+pub struct Instance {
     state: Arc<Mutex<State>>,
 }
 
-impl InstanceList {
+impl Instance {
     pub fn new(state: Arc<Mutex<State>>) -> Self {
         Self { state }
     }
 }
 
-impl Command for InstanceList {
+impl Command for Instance {
     fn name(&self) -> &str {
-        "instance list"
+        "instance"
     }
 
-    fn signature(&self) -> Signature {
-        Signature::build("instance list")
-            // .input_output_types(vec![(Type::Nothing, Type::List)])
+    fn signature(&self) -> nu_protocol::Signature {
+        Signature::build("instance")
+            .input_output_types(vec![(Type::Nothing, Type::String)])
             .category(Category::Custom("serverness".into()))
     }
 
     fn description(&self) -> &str {
-        "list active instances"
+        "You must use one of the following subcommands. Using this command as-is will only produce this help message."
     }
 
     fn run(
@@ -38,18 +38,6 @@ impl Command for InstanceList {
         call: &nu_protocol::engine::Call,
         input: nu_protocol::PipelineData,
     ) -> Result<nu_protocol::PipelineData, nu_protocol::ShellError> {
-        let guard = self.state.lock().unwrap();
-
-        let results = guard
-            .runtime
-            .block_on(crate::generated_nu::execute_instance_list(
-                engine_state,
-                stack,
-                call,
-                &guard.client,
-            ))
-            .unwrap();
-
-        Ok(results.into_pipeline_data())
+        Ok(Value::string(get_full_help(self, engine_state, stack), call.head).into_pipeline_data())
     }
 }

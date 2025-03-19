@@ -1,6 +1,11 @@
 pub mod help;
+pub mod instance;
 pub mod instance_create;
 pub mod instance_list;
+
+pub use instance::Instance;
+pub use instance_create::InstanceCreate;
+pub use instance_list::InstanceList;
 
 use nu_engine::command_prelude::*;
 

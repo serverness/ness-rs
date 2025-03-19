@@ -10,8 +10,7 @@ use std::{
 };
 
 use cmd::help::Help;
-use cmd::instance_create::InstanceCreate;
-use cmd::instance_list::{Instance, InstanceList};
+use cmd::{Instance, InstanceCreate, InstanceList};
 use context::create_context;
 use nu_cli::{gather_parent_env_vars, read_plugin_file};
 use nu_path::AbsolutePathBuf;

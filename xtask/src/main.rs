@@ -48,7 +48,8 @@ fn generate(sdk: bool, httpmock: bool, cli: bool, nu: bool) -> Result<(), String
         GenerationSettings::default()
             .with_interface(progenitor::InterfaceStyle::Builder)
             .with_tag(TagStyle::Separate)
-            .with_derive("schemars::JsonSchema"),
+            .with_derive("schemars::JsonSchema")
+            .with_map_type("indexmap::IndexMap"),
     );
 
     if sdk {

@@ -1,11 +1,8 @@
 use std::sync::{Arc, Mutex};
 
 use nu_engine::command_prelude::*;
-use nu_engine::get_full_help;
 use nu_protocol::SyntaxShape;
-use serverness::Client;
 
-use crate::state;
 use crate::state::State;
 
 #[derive(Clone)]
@@ -54,9 +51,6 @@ impl Command for InstanceCreate {
                 &guard.client,
             ))
             .unwrap();
-
-        /* let hostname = call.get_flag::<String>(engine_state, stack, "hostname")?;
-        let pool = call.get_flag::<::std::string::String>(engine_state, stack, "pool")?; */
 
         Ok(results.into_pipeline_data())
     }
