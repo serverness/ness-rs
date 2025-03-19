@@ -90,7 +90,7 @@ fn generate(sdk: bool, httpmock: bool, cli: bool, nu: bool) -> Result<(), String
         std::fs::write(out_path, &contents).unwrap();
     }
 
-    /* if nu {
+    if nu {
         let code = generator.nu(&spec, "serverness").unwrap().to_string();
         let contents = format_code(code);
 
@@ -100,7 +100,7 @@ fn generate(sdk: bool, httpmock: bool, cli: bool, nu: bool) -> Result<(), String
         out_path.push("generated_nu.rs");
 
         std::fs::write(out_path, &contents).unwrap();
-    }*/
+    }
 
     Ok(())
 }

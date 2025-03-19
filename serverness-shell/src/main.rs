@@ -9,6 +9,7 @@ use std::{
 };
 
 use cmd::help::Help;
+use cmd::instance_create::InstanceCreate;
 use cmd::instance_list::{Instance, InstanceList};
 use context::create_context;
 use nu_cli::{gather_parent_env_vars, read_plugin_file};
@@ -70,6 +71,7 @@ fn merge_serverness_delta(context: &mut EngineState, state: Arc<Mutex<State>>) {
     working_set.add_decl(Box::new(Help));
     working_set.add_decl(Box::new(Instance::new(state.clone())));
     working_set.add_decl(Box::new(InstanceList::new(state.clone())));
+    working_set.add_decl(Box::new(InstanceCreate::new(state.clone())));
 
     if let Err(err) = context.merge_delta(working_set.render()) {
         report_shell_error(&context, &err);

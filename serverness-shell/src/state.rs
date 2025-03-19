@@ -13,7 +13,7 @@ impl State {
         let client_config = ClientConfig::default()
             .with_auth(
                 "http://127.0.0.1:8000",
-                "ness-token-ee3015132966647024de61c46821f66e3de48ae5",
+                "ness-session-ee3015132966647024de61c46821f66e3de48ae5",
             )
             .with_insecure(true);
 

@@ -3359,7 +3359,6 @@ dependencies = [
 [[package]]
 name = "progenitor"
 version = "0.9.1"
-source = "git+https://github.com/oxidecomputer/progenitor#87b0f450f30b764982075e6d7f666e292bbe526c"
 dependencies = [
  "progenitor-impl",
 ]
@@ -3382,7 +3381,6 @@ dependencies = [
 [[package]]
 name = "progenitor-impl"
 version = "0.9.1"
-source = "git+https://github.com/oxidecomputer/progenitor#87b0f450f30b764982075e6d7f666e292bbe526c"
 dependencies = [
  "heck",
  "http",
@@ -4157,6 +4155,7 @@ dependencies = [
  "serde_json",
  "serverness",
  "tokio",
+ "uuid 1.13.2",
 ]
 
 [[package]]
