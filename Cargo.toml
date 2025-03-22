@@ -1,11 +1,5 @@
 [workspace]
-members = [
-  "serverness-cli",
-  "serverness-httpmock",
-  "serverness",
-  "serverness-shell",
-  "xtask",
-]
+members = ["serverness", "serverness-cli", "serverness-httpmock", "xtask"]
 resolver = "2"
 
 [workspace.package]
@@ -15,13 +9,27 @@ authors = ["Art Semyonov"]
 
 [workspace.dependencies]
 anyhow = "1.0.95"
+async-trait = "0.1.88"
+base64 = "0.22.1"
+colored = "3.0.0"
+crossterm = "0.28.1"
+dirs = "6.0.0"
+env_logger = "0.11.7"
+toml = "0.8.20"
+toml_edit = "0.22.24"
+ctrlc = "3.4.5"
+indoc = "2.0.5"
+url = "2.5.4"
+log = "0.4.26"
+tokio = { version = "1.43.0", features = ["full"] }
 clap = { version = "4.5.30", features = [
   "derive",
   "string",
   "env",
   "wrap_help",
 ] }
-progenitor = { path = "../progenitor/progenitor", default-features = false }
+dropshot = { version = "0.16.0" }
+progenitor = { git = "https://github.com/serverness/progenitor.git", branch = "nushell", default-features = false }
 progenitor-client = "0.9.1"
 serde = "1.0.217"
 serde_json = "1.0.138"
@@ -43,18 +51,4 @@ schemars = { version = "0.8.21", features = [
 ] }
 uuid = { version = "1.13.2", features = ["v7", "serde"] }
 serverness = { path = "serverness" }
-nu-protocol = { path = "../nushell/crates/nu-protocol" }
-nu-cli = { path = "../nushell/crates/nu-cli" }
-nu-cmd-base = { path = "../nushell/crates/nu-cmd-base" }
-nu-cmd-extra = { path = "../nushell/crates/nu-cmd-extra" }
-nu-cmd-lang = { path = "../nushell/crates/nu-cmd-lang" }
-nu-cmd-plugin = { path = "../nushell/crates/nu-cmd-plugin" }
-nu-command = { path = "../nushell/crates/nu-command" }
-nu-engine = { path = "../nushell/crates/nu-engine" }
-nu-explore = { path = "../nushell/crates/nu-explore" }
-nu-parser = { path = "../nushell/crates/nu-parser" }
-nu-path = { path = "../nushell/crates/nu-path" }
-nu-plugin = { path = "../nushell/crates/nu-plugin" }
-nu-plugin-engine = { path = "../nushell/crates/nu-plugin-engine" }
-nu-system = { path = "../nushell/crates/nu-system" }
-nu-utils = { path = "../nushell/crates/nu-utils" }
+nu-protocol = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
